@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Mar 30 15:18:28 2025
-
-@author: Dell
+Brain Tumor Detection and Segmentation
 """
 
 import streamlit as st
@@ -42,9 +40,9 @@ transforms = Compose([
 
 # Streamlit UI
 st.title("Brain Tumor Detection & Segmentation")
-st.write("Upload a **TIFF, NIfTI (.nii), or NumPy (.npy) file** to check for brain tumors.")
+st.write("Upload you 3D MRI scans to check for brain tumors.")
 
-uploaded_file = st.file_uploader("Upload an image file", type=["npy", "nii", "tiff", "tif"])
+uploaded_file = st.file_uploader("Upload an image file", type=["npy", "nii","nii.gz", "gz", "tiff", "tif"])
 
 def load_image(file):
     """Loads and preprocesses the uploaded image file."""
@@ -128,7 +126,7 @@ if uploaded_file:
         axes[2].axis("off")
 
         st.pyplot(fig)
-        st.success("✅ Prediction Complete! Check the tumor segmentation above.")
+        st.success("Prediction Complete! Check the tumor segmentation above, it essential to understand the limitations of AI before using it on a patient's treatment")
     
     except Exception as e:
         st.error(f"Error processing file: {e}")
